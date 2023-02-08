@@ -1,0 +1,36 @@
+{
+  "name": "smartedu",
+  "version": "1.0.0",
+  "description": "Education portal",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berkmahim/SmartEdu.git"
+  },
+  "keywords": [
+    "education",
+    "portal",
+    "nodejs",
+    "express"
+  ],
+  "author": "Berk Mahim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berkmahim/SmartEdu/issues"
+  },
+  "homepage": "https://github.com/berkmahim/SmartEdu#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0",
+    "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
