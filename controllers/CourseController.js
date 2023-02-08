@@ -1,4 +1,5 @@
 import Course from "../models/Course.js";
+import Category from "../models/Category.js";
 
 const CourseController = {}
 
@@ -21,15 +22,27 @@ CourseController.getAllCourses = async (req, res) =>{
 
 
     try {
-        const courses = await Course.find({})
+        const categories = await Category.find({})
+        const categorySlug = req.query.categories
+        const category = await Category.findOne( {slug: categorySlug})
+
+        let filter = {}
+
+        if (categorySlug){
+            filter = {category: category._id}
+        }
+
         //api test
         // res.status(200).json({
         //     status: 'success',
         //     courses
         // })
         // res.send('kurs olusturuldu')
+        const courses = await Course.find(filter)
+
         res.status(200).render('courses', {
             courses: courses,
+            categories: categories,
             page_name: 'courses'
         })
     }catch (error) {
