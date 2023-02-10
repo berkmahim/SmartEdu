@@ -13,6 +13,11 @@ PageController.getAboutPage = (req, res) => {
         page_name: 'about'
     })
 }
+PageController.getRegisterPage = (req, res) => {
+    res.render('register', {
+        page_name: 'register'
+    })
+}
 
 
 export default PageController

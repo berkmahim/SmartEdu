@@ -7,4 +7,6 @@ const router = express.Router()
 router.route('/').post(CategoryController.createCategory)
 
 
+
+
 export default router

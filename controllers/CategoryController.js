@@ -1,10 +1,10 @@
-import Course from "../models/Category.js";
+import Category from "../models/Category.js";
 
 const CategoryController = {}
 
 CategoryController.createCategory = async (req, res) =>{
     try {
-        const category = await Course.create(req.body)
+        const category = await Category.create(req.body)
         res.status(201).json({
             status: 'success',
             category
@@ -16,5 +16,4 @@ CategoryController.createCategory = async (req, res) =>{
             error
         })
     }}
-
 export default CategoryController
