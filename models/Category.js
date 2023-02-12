@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import slugify from "slugify";
+
 mongoose.set('strictQuery', false)
 const Schema = mongoose.Schema
 

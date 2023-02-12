@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import slugify from "slugify";
+import Category from "../models/Category.js";
 mongoose.set('strictQuery', false)
 const Schema = mongoose.Schema
 
@@ -13,6 +14,10 @@ const CourseSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     },
     slug: {
         type: String,
