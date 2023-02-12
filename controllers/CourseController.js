@@ -1,13 +1,18 @@
 import Course from "../models/Course.js";
 import Category from "../models/Category.js";
 import category from "../models/Category.js";
+import User from "../models/User.js";
 
 const CourseController = {}
 
 CourseController.createCourse = async (req, res) =>{
-    console.log(req.body.category)
     try {
-        const course = await Course.create(req.body)
+        const course = await Course.create({
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            user: req.session.userID
+        })
             res.status(201).redirect('/courses')
         // res.send('kurs olusturuldu')
         }catch (error) {
@@ -28,8 +33,9 @@ CourseController.getAllCourses = async (req, res) =>{
             filter = {category: category._id}
         }
 
-        const courses = await Course.find(filter).sort('-timestamps')
+        const courses = await Course.find(filter).sort('-createdAt')
         const categories = await Category.find({})
+
         //api test
         // res.status(200).json({
         //     status: 'success',
@@ -54,7 +60,7 @@ CourseController.getCourse = async (req, res) =>{
 
 
     try {
-        const course = await Course.findOne({slug: req.params.slug})
+        const course = await Course.findOne({slug: req.params.slug}).populate('user')
 
         res.status(200).render('course', {
             course,

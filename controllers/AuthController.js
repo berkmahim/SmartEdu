@@ -1,6 +1,7 @@
 import bcrypt  from 'bcrypt'
 import User from "../models/User.js"
 import Category from "../models/Category.js"
+import Course from "../models/Course.js";
 
 const AuthController = {}
 
@@ -43,10 +44,13 @@ AuthController.logoutUser = (req, res) => {
 AuthController.getDashboardPage = async (req, res) => {
     const user = await User.findOne({_id:req.session.userID})
     const categories = await Category.find()
+    const courses = await Course.find({user:req.session.userID}).sort('-createdAt')
+
     res.status(200).render('dashboard',{
         page_name: 'dashboard',
         user,
-        categories
+        categories,
+        courses
     })
 }
 
