@@ -22,14 +22,9 @@ AuthController.loginUser = async (req, res) =>{
         const { email, password } = req.body
         let user = await User.findOne({ email })
         let same = await bcrypt.compare(password, user.password)
-        if(same){
+
             req.session.userID = user._id
             res.status(200).redirect('/users/dashboard')
-        }
-        else{
-            res.send('Geçersiz')
-        }
-
     }catch (error) {
         res.status(400).json({
             status: 'error',
@@ -42,7 +37,7 @@ AuthController.logoutUser = (req, res) => {
     })
 }
 AuthController.getDashboardPage = async (req, res) => {
-    const user = await User.findOne({_id:req.session.userID})
+    const user = await User.findOne({_id:req.session.userID}).populate('courses')
     const categories = await Category.find()
     const courses = await Course.find({user:req.session.userID}).sort('-createdAt')
 
