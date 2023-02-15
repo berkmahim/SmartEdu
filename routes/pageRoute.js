@@ -7,6 +7,8 @@ const router = express.Router()
 
 router.route('/').get(PageController.getIndexPage)
 router.route('/about').get(PageController.getAboutPage)
+router.route('/contact').get(PageController.getContactPage)
+router.route('/contact').post(PageController.sendEmail)
 router.route('/register').get(redirectMiddleware.ifLogedin,PageController.getRegisterPage)
 router.route('/login').get(redirectMiddleware.ifLogedin,PageController.getLoginPage)
 
